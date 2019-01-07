@@ -9,9 +9,9 @@
  4. Demo will be live at [http://localhost:5000/](http://localhost:5000/).
 
 ## Useful resources:
-1. I've borrowed th chat UI from from [chatterbot demo] (https://github.com/chamkank/flask-chatterbot), then made some modifications on handling messages.
+1. I've borrowed th chat UI from from [chatterbot demo](https://github.com/chamkank/flask-chatterbot), then made some modifications on handling messages.
 2. I've also built most of the chatbot logic and training based on this [tutorial](https://github.com/JustinaPetr/Weatherbot_Tutorial)
-3. For training the bot, I started by using data from this [demo] (https://github.com/RasaHQ/rasa_core/tree/master/examples/moodbot), but I may be adding and modifying training in comming commits. *note: trianing files are domain.yml, nlu.md(renaimed to training_data) and stories.md*
+3. For training the bot, I started by using data from this [demo](https://github.com/RasaHQ/rasa_core/tree/master/examples/moodbot), but I may be adding and modifying training in comming commits. *note: trianing files are domain.yml, nlu.md(renaimed to training_data) and stories.md*
 
 ## The chatbot approach:
 Rasa based chatbots have some advantages. Unlike geneartive models, the dialog structure can be designed by the developer and yet it's not hard coded.
