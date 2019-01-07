@@ -5,7 +5,7 @@
 ## Local Setup:
  1. Ensure that rasa_nlu, rasa_core and requirements.txt are installed (run `pip install -r requirements.txt`).
  2. Run the server *chatbotServer.py*
- 3. Demo will be live at [http://localhost:5055/](http://localhost:5055/)
+ 3. Demo will be live at [http://localhost:5000/](http://localhost:5000/)
 
 
 ## License
