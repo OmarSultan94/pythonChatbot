@@ -17,31 +17,5 @@ input_channel = SocketIOInput(
         # socket.io namespace to use for the messages
         namespace=None
 )
-
-from time import sleep
-def run_agent():
-        # set serve_forever=True if you want to keep the server running
-        s = agent.handle_channels([input_channel], 5004, serve_forever=True)
-#        sleep(5)
-#        print("hey")
-        return 1
-
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = "theSecret"
-socketio = SocketIO(app)
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-#app.run('0.0.0.0',5000,False,)
-import _thread
-try:
-        _thread.start_new_thread( app.run, (True) )
-        _thread.start_new_thread( run_agent)
-except:
-   print ("Error: unable to start thread")
+print("bot server is about to run...")
+s = agent.handle_channels([input_channel], 5004, serve_forever=True)
