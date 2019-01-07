@@ -12,7 +12,7 @@ action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")
 agent = Agent.load('./models/dialogue', interpreter=interpreter, action_endpoint=action_endpoint)
 
 input_channel = SocketIOInput(
-        # event name for messages sent from the user
+        # event name for messages sent from the user 
         user_message_evt="user_uttered",
         # event name for messages sent from the bot
         bot_message_evt="bot_uttered",
