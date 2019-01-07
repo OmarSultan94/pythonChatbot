@@ -1,11 +1,11 @@
 # Chatbot Using Rasa
 
-#### A web implementation of [ChatterBot](https://github.com/) using Flask.
+#### A web implementation of rasa chatbot using rasa_nlu and rasa_core.
 
 ## Local Setup:
- 1. Ensure that Python, Flask, SQLAlchemy, and ChatterBot are installed (either manually, or run `pip install -r requirements.txt`).
- 2. Run *app.py*
- 3. Demo will be live at [http://localhost:5000/](http://localhost:5055/)
+ 1. Ensure that rasa_nlu, rasa_core and requirements.txt are installed (run `pip install -r requirements.txt`).
+ 2. Run the server *chatbotServer.py*
+ 3. Demo will be live at [http://localhost:5055/](http://localhost:5055/)
 
 
 ## License
