@@ -6,7 +6,7 @@ from rasa_core.interpreter import RegexInterpreter
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.utils import EndpointConfig
 
-#load your trained agent
+# load your trained agent
 interpreter = RasaNLUInterpreter('./models/nlu/default/chat')
 action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")
 agent = Agent.load('./models/dialogue', interpreter=interpreter, action_endpoint=action_endpoint)
