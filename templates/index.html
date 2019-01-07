@@ -41,10 +41,7 @@
               var src = data.attachment.payload.src;
               var botHtml = /*'<div class="botText">*/'<img id="image" src=""/ alt="Image Can\'t load" height="300" width="350">';//</div>';
               $("#chatbox").append(botHtml);
-              //there is a problem with loading the image
-              //so I'm making it fixed temporary
-              //document.getElementById("image").src = src;
-              $("#image").attr("src", src);//"https://previews.123rf.com/images/irinalapeto/irinalapeto1708/irinalapeto170800006/83500269-cute-baby-girl-or-boy-after-shower-with-towel-on-head-in-white-sunny-bedroom-child-with-big-blue-eye.jpg");
+              $("#image").attr("src", src);
               document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
               //var img = document.getElementById('image');
               

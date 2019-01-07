@@ -3,7 +3,7 @@
 #### A web implementation of rasa chatbot using rasa_nlu and rasa_core.
 
 ## Local Setup:
- 1. Ensure that rasa_nlu, rasa_core and requirements.txt are installed (run `pip install -r requirements.txt`).
+ 1. Ensure that python 3 rasa_nlu, rasa_core and requirements.txt are installed (run `pip install -r requirements.txt`).
  2. Run the pre-trained chatbot server `python chatbotServer.py`.
  3. Run the demo UI `python demo.py`.
  4. Demo will be live at [http://localhost:5000/](http://localhost:5000/).
@@ -11,7 +11,7 @@
 ## Useful resources:
 1. I've borrowed th chat UI from from [chatterbot demo] (https://github.com/chamkank/flask-chatterbot), then made some modifications on handling messages.
 2. I've also built most of the chatbot logic and training based on this [tutorial](https://github.com/JustinaPetr/Weatherbot_Tutorial)
-3. training dataset
+3. For training the bot, I started by using data from this [demo] (https://github.com/RasaHQ/rasa_core/tree/master/examples/moodbot), but I may be adding and modifying training in comming commits. *note: trianing files are domain.yml, nlu.md(renaimed to training_data) and stories.md*
 
 ## The chatbot approach:
 Rasa based chatbots have some advantages. Unlike geneartive models, the dialog structure can be designed by the developer and yet it's not hard coded.
@@ -27,7 +27,8 @@ After training the chatbot on the to main components, it's ready to be used and 
 Note: There was an option to use chatterbot with some training on dialog dataset. It works, but I found the results unreliable and un realistic to use only the sequence to sequence machine learning models to fully generate responses and direct the flow of the dialog. 
 
 ## About this chatbot:
-
+This is a simple chatbot that aims to understand the emotion state of the user and sends him some funny pictures if he's upset.
+The dialog is still limited due to the small training set, but it's straight forward to expand after that.
 
 ## License
 This source is free to use, with no conditions
