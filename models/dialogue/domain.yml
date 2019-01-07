@@ -1,0 +1,35 @@
+%YAML 1.1
+---
+actions:
+- utter_greet
+- utter_get_pizza_size
+- utter_get_pizza_toppings
+- action_order_pizza
+config:
+  store_entities_as_slots: true
+entities:
+- size
+- toppings
+forms: []
+intents:
+- order_pizza:
+    use_entities: true
+- greet:
+    use_entities: true
+slots:
+  size:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  toppings:
+    auto_fill: true
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_get_pizza_size:
+  - text: What pizza size?
+  utter_get_pizza_toppings:
+  - text: What toppings would you like on your pizza?
+  utter_greet:
+  - text: Hello, how can I help you?
+  - text: Hi, I am here to help.
