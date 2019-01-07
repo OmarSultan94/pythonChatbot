@@ -19,8 +19,8 @@ def train (data, config_file, model_dir):
 def run():
     interpreter = Interpreter.load('./models/nlu/default/chat')
     
-    print(interpreter.parse(u"I want to order pizza"))
+    print(interpreter.parse(u"I am going to save the world"))
 
 if __name__ == '__main__':
-    train('./data/training_data.json', './config/config.yml', './models/nlu')
+    train('./data/training_data.md', './config/config.yml', './models/nlu')
     run()

@@ -1,27 +1,36 @@
 intents:
-  - order_pizza
   - greet
+  - goodbye
+  - mood_affirm
+  - mood_deny
+  - mood_great
+  - mood_unhappy
 
-entities:
-  - size
-  - toppings
-
-slots:
-  size:
-    type: text
-  toppings:
-    type: text
+actions:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
 
 templates:
   utter_greet:
-    - 'Hello, how can I help you?'
-    - 'Hi, I am here to help.'
-  utter_get_pizza_size:
-    - 'What pizza size?'
-  utter_get_pizza_toppings:
-    - 'What toppings would you like on your pizza?'
-actions:
-  - utter_greet
-  - utter_get_pizza_size
-  - utter_get_pizza_toppings
-  - action_order_pizza
+  - text: "Hey! How are you?"
+    buttons:
+    - title: "great"
+      payload: "great"
+    - title: "super sad"
+      payload: "super sad"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://previews.123rf.com/images/irinalapeto/irinalapeto1708/irinalapeto170800006/83500269-cute-baby-girl-or-boy-after-shower-with-towel-on-head-in-white-sunny-bedroom-child-with-big-blue-eye.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great carry on!"
+
+  utter_goodbye:
+  - text: "Bye"

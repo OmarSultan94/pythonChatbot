@@ -9,14 +9,14 @@
  4. Demo will be live at [http://localhost:5000/](http://localhost:5000/).
 
 ## Useful resources:
-1. I've borrowed th chat UI from from [chatterbot demo] (https://github.com/chamkank/flask-chatterbot).
+1. I've borrowed th chat UI from from [chatterbot demo] (https://github.com/chamkank/flask-chatterbot), then made some modifications on handling messages.
 2. I've also built most of the chatbot logic and training based on this [tutorial](https://github.com/JustinaPetr/Weatherbot_Tutorial)
 3. training dataset
 
 ## The chatbot approach:
 Rasa based chatbots have some advantages. Unlike geneartive models, the dialog structure can be designed by the developer and yet it's not hard coded.
 
-Two major components are in the chatbot learning process: Understand of user input and the decisions regarding these intents.
+Two major components are in the chatbot learning process: Understanding of user input and the decisions regarding these intents.
 
 In the understand component, we define the intents that we assume the user may have and deal with the input as a classification problem, to get the right intent from each sentence.  We also define some entities to recognise to help us know what's he asking or expressing about specifically.
 

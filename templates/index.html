@@ -10,48 +10,81 @@
     <h3>A web demo for a chatbot using rasa_nlu and rasa_core.</h3>
     <div>
       <div id="chatbox">
-        <p class="botText"><span>Hi! I'm chatty. I can help you ordering your pizza. What do you want?</span></p>
+        <p class="botText"><span>Hi there!</span></p>
       </div>
       <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Message">
         <input id="buttonInput" type="submit" value="Send">
       </div>
       <script>
+        var socket = io.connect('http://localhost:5004');
+        function addValue(val){
+                socket.emit('user_uttered', {message:val});
+                var userHtml = '<p class="userText"><span>' + val + '</span></p>';
+                $("#chatbox").append(userHtml);
+                $("#textInput").val("");
+                return
+        }
         $(document).ready(function() {
-          var socket = io.connect('http://localhost:5004');
           socket.on('connect', function() {
               console.log("connected");
-              //socket.send('User has connected!');
           });
-          /*socket.on('message', function(data) {
-            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            console.log('Received message');*/
-            
-            socket.on('user_uttered', function(data) {
-            //var botHtml = '<p class="botText"><span>' + data + '</span></p>';
-            //$("#chatbox").append(botHtml);
-            //document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-            console.log('sent message');
-            });
             socket.on('bot_uttered', function(data) {
-            var reply = data.text;
-            var botHtml = '<p class="botText"><span>' + reply + '</span></p>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            console.log(JSON.stringify(data));
+            if(data.text){
+              var reply = data.text;
+              var botHtml = '<p class="botText"><span>' + reply + '</span></p>';
+              $("#chatbox").append(botHtml);
+              document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            }
+            if(data.attachment && data.attachment.type =="image"){
+              var src = data.attachment.payload.src;
+              var botHtml = /*'<div class="botText">*/'<img id="image" src=""/ alt="Image Can\'t load" height="300" width="350">';//</div>';
+              $("#chatbox").append(botHtml);
+              //there is a problem with loading the image
+              //so I'm making it fixed temporary
+              //document.getElementById("image").src = src;
+              $("#image").attr("src", src);//"https://previews.123rf.com/images/irinalapeto/irinalapeto1708/irinalapeto170800006/83500269-cute-baby-girl-or-boy-after-shower-with-towel-on-head-in-white-sunny-bedroom-child-with-big-blue-eye.jpg");
+              document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+              //var img = document.getElementById('image');
+              
+            }
+            if(data.quick_replies){
+              data.quick_replies.forEach(element => {
+                if(element.content_type == "text"){
+                  var title = element.title;
+                  var payload = element.payload;
+                  var botHtml = '<span class="botText"> <input type="button" id ="autoButtonInput" class="autoButtonInput" value = "' + 
+                     payload + '"/></span>';
+                  $("#chatbox").append(botHtml);
+                  document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+                }
+              });
+
+              $('.autoButtonInput').on('click', function() {
+                var rawText = $(this).val();
+                console.log("message: " + rawText);
+                socket.emit('user_uttered', {message:rawText});
+                //socket.send(rawText);
+                var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+                $("#textInput").val("");
+                $("#chatbox").append(userHtml);
+                document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+              });
+            }
             console.log('Received message');
           });
           $('#buttonInput').on('click', function() {
             var rawText = $("#textInput").val();
             console.log("message: " + rawText);
             socket.emit('user_uttered', {message:rawText});
-            socket.send(rawText);
+            //socket.send(rawText);
             var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
             $("#textInput").val("");
             $("#chatbox").append(userHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
+          
         });
 
         

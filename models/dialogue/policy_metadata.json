@@ -1,12 +1,12 @@
 {
   "action_fingerprints": {
     "action_listen": {
-      "slots": [
-        "size",
-        "toppings"
-      ]
+      "slots": []
     },
-    "action_restart": {
+    "utter_goodbye": {
+      "slots": []
+    },
+    "utter_happy": {
       "slots": []
     }
   },
@@ -21,5 +21,5 @@
     "rasa_core.policies.memoization.MemoizationPolicy",
     "rasa_core.policies.keras_policy.KerasPolicy"
   ],
-  "trained_at": "20190107-052814"
+  "trained_at": "20190107-142740"
 }

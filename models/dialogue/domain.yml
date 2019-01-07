@@ -2,34 +2,42 @@
 ---
 actions:
 - utter_greet
-- utter_get_pizza_size
-- utter_get_pizza_toppings
-- action_order_pizza
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
 config:
   store_entities_as_slots: true
-entities:
-- size
-- toppings
+entities: []
 forms: []
 intents:
-- order_pizza:
-    use_entities: true
 - greet:
     use_entities: true
-slots:
-  size:
-    auto_fill: true
-    initial_value: null
-    type: rasa_core.slots.TextSlot
-  toppings:
-    auto_fill: true
-    initial_value: null
-    type: rasa_core.slots.TextSlot
+- goodbye:
+    use_entities: true
+- mood_affirm:
+    use_entities: true
+- mood_deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+slots: {}
 templates:
-  utter_get_pizza_size:
-  - text: What pizza size?
-  utter_get_pizza_toppings:
-  - text: What toppings would you like on your pizza?
+  utter_cheer_up:
+  - image: https://previews.123rf.com/images/irinalapeto/irinalapeto1708/irinalapeto170800006/83500269-cute-baby-girl-or-boy-after-shower-with-towel-on-head-in-white-sunny-bedroom-child-with-big-blue-eye.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_goodbye:
+  - text: Bye
   utter_greet:
-  - text: Hello, how can I help you?
-  - text: Hi, I am here to help.
+  - buttons:
+    - payload: great
+      title: great
+    - payload: super sad
+      title: super sad
+    text: Hey! How are you?
+  utter_happy:
+  - text: Great carry on!
