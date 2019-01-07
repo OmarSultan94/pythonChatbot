@@ -19,5 +19,4 @@ input_channel = SocketIOInput(
         # socket.io namespace to use for the messages
         namespace=None
 )
-print("bot server is about to run...")
 s = agent.handle_channels([input_channel], 5004, serve_forever=True)
