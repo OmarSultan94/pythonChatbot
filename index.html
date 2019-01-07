@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Chatbot Demo</h1>
+    <h3>A web demo for a chatbot using rasa_nlu and rasa_core.</h3>
+    <div>
+      <div id="chatbox">
+        <p class="botText"><span>Hi! I'm chatty. I can help you ordering your pizza. What do you want?</span></p>
+      </div>
+      <div id="userInput">
+        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="buttonInput" type="submit" value="Send">
+      </div>
+      <script>
+        $(document).ready(function() {
+          var socket = io.connect('http://127.0.0.1:5004');
+          socket.on('connect', function() {
+              console.log("connected");
+              //socket.send('User has connected!');
+          });
+          /*socket.on('message', function(data) {
+            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            console.log('Received message');*/
+            
+            socket.on('user_uttered', function(data) {
+            //var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            //$("#chatbox").append(botHtml);
+            //document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            console.log('sent message');
+            });
+            socket.on('bot_uttered', function(data) {
+            var reply = data.text;
+            var botHtml = '<p class="botText"><span>' + reply + '</span></p>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+            console.log('Received message');
+          });
+          $('#buttonInput').on('click', function() {
+            var rawText = $("#textInput").val();
+            console.log("message: " + rawText);
+            socket.emit('user_uttered', {message:rawText});
+            socket.send(rawText);
+            var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        });
+
+        
+        /*$("#textInput").keypress(function(e) {
+            if(e.which == 13) {
+                getBotResponse();
+            }
+        });*/
+        /*$("#buttonInput").click(function() {
+          getBotResponse();
+        })*/
+      </script>
+    </div>
+  </body>
+</html>
